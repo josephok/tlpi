@@ -46,6 +46,10 @@ int main(int argc, char const *argv[])
 
     printf("%ld bytes read\n", nread);
 
+    for (size_t i = 0; i < IOV_SISE; i++)
+    {
+        free(iov[i].iov_base);
+    }
     close(fd);
     return 0;
 }
