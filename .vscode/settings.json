@@ -1,8 +1,0 @@
-{
-    "files.associations": {
-        "istream": "c",
-        "common.h": "c",
-        "assert.h": "c",
-        "uio.h": "c"
-    }
-}
