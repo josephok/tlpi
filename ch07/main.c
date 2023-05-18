@@ -11,18 +11,17 @@ extern Block *head;
 
 int main(int argc, char const *argv[])
 {
-    for (size_t i = 0; i < 10; i++)
+    for (size_t i = 1; i < 100; i+=5)
     {
-        char *s = my_malloc(8);
-        snprintf(s, 8, "abcdefg");
-        printf("%s\n", s);
+        char *s = my_malloc(i);
         my_free(s);
+        print_block();
     }
-    print_block();
 }
 
 void print_block()
 {
+    printf("=====================\n");
     Block *p = head;
     while (p != NULL)
     {
@@ -30,4 +29,5 @@ void print_block()
                p, p->len, p->ptr, p->next_block, p->is_free);
         p = p->next_block;
     }
+    printf("=====================\n");
 }
