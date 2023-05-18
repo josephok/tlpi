@@ -8,6 +8,7 @@ int my_siginterrupt(int sig, int flag)
 {
     struct sigaction act = {
         .sa_handler = SIG_DFL,
+        .sa_flags = 0
     };
 
     if (flag == 0)

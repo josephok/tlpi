@@ -13,7 +13,7 @@ void handler(int signum)
     sleep(600);
 }
 
-/* Use kill -USR1 command will terminate the process immediately*/
+/* Use kill -USR1 command will terminate the process immediately */
 int main(int argc, char const *argv[])
 {
     struct sigaction act = {
@@ -21,8 +21,6 @@ int main(int argc, char const *argv[])
         .sa_flags = SA_RESETHAND | SA_NODEFER};
     sigaction(SIGUSR1, &act, NULL);
     // This one use disposition handler
-    raise(SIGUSR1);
-    // This one use default disposition
     raise(SIGUSR1);
     return 0;
 }
