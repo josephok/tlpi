@@ -10,6 +10,7 @@ int main(int argc, char *argv[])
     struct sockaddr_un addr;
     int sfd;
     ssize_t numRead;
+    uint8_t x;
     char buf[BUF_SIZE];
     sfd = socket(AF_UNIX, SOCK_STREAM, 0);
     if (sfd == -1)
