@@ -47,6 +47,7 @@ int main(int argc, char const *argv[])
         for (;;)
         {
             memset(command_str, '\0', CMD_LEN);
+            memset(command_arr[0], '\0', COMMAND_TOKEN_LEN + 1);
             memset(command_arr[1], '\0', KV_LEN + 1);
             memset(command_arr[2], '\0', KV_LEN + 1);
             char *s = fgets(command_str, CMD_LEN, file);
@@ -64,7 +65,7 @@ int main(int argc, char const *argv[])
             {
                 printf("set key: %s with value: %s\n", command_arr[1], command_arr[2]);
                 ht_insert(table, command_arr[1], command_arr[2]);
-                write(cfd, "OK\n", 4);
+                write(cfd, "OK\n", 3);
             }
             else if (is_get(command_arr[0]))
             {
@@ -72,19 +73,19 @@ int main(int argc, char const *argv[])
                 if (value != NULL)
                 {
                     printf("get key: %s with value: %s\n", command_arr[1], value);
-                    write(cfd, value, strlen(value) + 1);
-                    write(cfd, "\n", 2);
+                    strcat(value, "\n");
+                    write(cfd, value, strlen(value));
                 }
                 else
                 {
-                    write(cfd, "NULL\n", 6);
+                    write(cfd, "NULL\n", 5);
                 }
             }
             else if (is_del(command_arr[0]))
             {
                 printf("del key: %s\n", command_arr[1]);
                 ht_delete(table, command_arr[1]);
-                write(cfd, "OK\n", 4);
+                write(cfd, "OK\n", 3);
             }
             else
             {
